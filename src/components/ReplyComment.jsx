@@ -3,12 +3,18 @@ import Vote from "./componentParts/Vote";
 import CommentDisplay from "./componentParts/CommentDisplay";
 import AddComment from "./AddComment";
 import DeleteModel from "./componentParts/DeleteModel";
-function ReplyComment({ replies , idofComment,addReply ,editReply,deleteComment,updateScore}) {
+function ReplyComment({ replies , idofComment,UpdateReplies ,deleteComment,updateScore,editComment}) {
   const [reply, setReply] = useState(false);
   const [opnDelModel, setDelModel]=useState(false)
   function DeleteReplay(id,type="reply"){
        deleteComment(id,type,idofComment);
        setDelModel(false)
+  }
+  function editReply(id,updatedComment){
+     editComment(id,updatedComment,"reply")
+  }
+  function addReply(newReply){
+     UpdateReplies(idofComment,newReply)
   }
   return (
     <div className=" sm:w-93p border-l-2 border-gray-300 float-right mt-5">

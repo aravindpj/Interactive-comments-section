@@ -10,12 +10,11 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
    function addReply(newReply){
       UpdateReplies(comment.id,newReply)
    }
-   
-   function editReply(id,updatedContent){
-      editComment(id,updatedContent,"reply")
-   }
    function DeleteComment(id,type="comment"){
        deleteComment(id,type)
+   }
+   function modifyComment(id,updatedComment){
+      editComment(id,updatedComment,"comment")
    }
   return (
   <div className="max-w-47em">
@@ -31,8 +30,7 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
               setDelModel={setDelModel}
               reply={reply}
               setReply={setReply}
-              editComment={editComment}
-             
+              editComment={modifyComment}   
             />   
         </div>
         {
@@ -46,8 +44,8 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
             idofComment={comment.id}
             opnDelModel={opnDelModel}
             setDelModel={setDelModel}
-            addReply={addReply}
-            editReply={editReply}
+            UpdateReplies={UpdateReplies}
+            editComment={editComment}
            deleteComment={deleteComment}
            updateScore={updateScore}
           />

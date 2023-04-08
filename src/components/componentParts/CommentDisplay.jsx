@@ -4,17 +4,17 @@ function CommentDisplay({comment,opnDelModel,setDelModel,setReply,reply,editComm
     const  [updatedContent,setUpdateContent]=useState('')
     function handleEditForm(e){
          e.preventDefault()
-         editComment(comment.id,updatedContent,"comment")
+         editComment(comment.id,updatedContent)
          setEdit(false)
     }
   return (
     <div className='w-full '>
         {/* header */}
         <div className=' flex justify-between items-center'>
-            <div className='flex gap-4 items-center'>
+            <div className='flex gap-2 sm:gap-4 items-center'>
                 <img className='w-9' src={comment?.user.image.png} alt="" />
-                <span className='text-base sm:text-lg font-medium'>{comment?.user.username}</span>
-                { comment?.currentUser && <span className='text-sm sm:text-base font-normal px-2 text bg-modblue-100 text-white rounded-sm'>you</span> }
+                <span className='text-sm sm:text-lg font-medium'>{comment?.user.username}</span>
+                { comment?.currentUser && <span className='text-sm  sm:text-base font-normal px-2 text bg-modblue-100 text-white rounded-sm'>you</span> }
                 <span className='text-sm sm:text-base text-gray-500'>{comment?.createdAt}</span>
             </div>
             <div className='hidden sm:flex gap-2 items-center cursor-pointer '>
