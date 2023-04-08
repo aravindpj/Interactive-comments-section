@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Vote({comment,updateScore,type}) {
+function Vote({comment,updateScore,type,setReply,reply,opnDelModel,setDelModel}) {
     const [vote,setVote]=useState(comment?.voted ?? false)
     const [score,setScore]=useState(comment?.score)
    function upVote(){
@@ -38,17 +38,25 @@ function Vote({comment,updateScore,type}) {
             </button>
         </div>
         <div className='flex  items-center cursor-pointer sm:hidden '>
-            <img className='w-4 mr-2' src="./images/icon-reply.svg" alt="" />
-            <p className='text-modblue-100 text-lg font-medium '>Reply</p>
-               {/* <button className='flex items-center gap-1.5 mr-5'>
+            {
+              comment?.currentUser ?
+               <div className='flex gap-3'>
+                <button onClick={()=>setDelModel(!opnDelModel)} className='flex items-center gap-1.5'>
                     <img src="./images/icon-delete.svg" alt="" />
-                     <span className='text-red-400 font-medium text-lg'>Delete</span>
+                     <span className='text-red-400 font-normal text-base'>Delete</span>
                 </button>
 
                 <button className='flex items-center gap-1.5 '>
                     <img src="./images/icon-edit.svg" alt="" />
-                     <span className='text-modblue-100 font-medium text-lg'>Edit</span>
-                </button> */}
+                     <span className='text-modblue-100 font-normal text-base'>Edit</span>
+                </button> 
+               </div>
+               :
+               <button onClick={()=>setReply(!reply)}  className='flex items-center gap-2'>
+                  <img className='w-4 ' src="./images/icon-reply.svg" alt="" />
+                  <p className='text-modblue-100 text-lg font-medium '>Reply</p>
+               </button>
+            }
         </div> 
     </div>
   )

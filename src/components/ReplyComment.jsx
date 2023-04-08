@@ -17,11 +17,19 @@ function ReplyComment({ replies , idofComment,UpdateReplies ,deleteComment,updat
      UpdateReplies(idofComment,newReply)
   }
   return (
-    <div className="w-94p sm:w-93p border-l-2 border-gray-300 float-right mt-5">
+    <div className="w-full sm:w-93p border-l-2 border-gray-300 float-right mt-5">
       {replies?.map((comment, i) => (
         <div className=" flex flex-col items-end mb-2">
           <div className="sm:flex-row items-start md:max-w-47em w-94p flex  gap-5 p-7 rounded-lg bg-white flex-col-reverse ">
-            <Vote comment={comment} updateScore={updateScore} type={"reply"} />
+            <Vote 
+              comment={comment}
+              updateScore={updateScore}
+              type={"reply"} 
+              reply={reply}
+              setReply={setReply}
+              opnDelModel={opnDelModel}
+              setDelModel={setDelModel}
+              />
             <CommentDisplay
               comment={comment}
               reply={reply}

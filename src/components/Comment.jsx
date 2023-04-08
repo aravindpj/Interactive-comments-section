@@ -7,6 +7,7 @@ import AddComment from './AddComment'
 function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) {
    const [opnDelModel,setDelModel]=useState(false)
    const [reply,setReply]=useState(false)
+   
    function addReply(newReply){
       UpdateReplies(comment.id,newReply)
    }
@@ -23,6 +24,10 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
               comment={comment}
               updateScore={updateScore}
               type={"comment"}
+              reply={reply}
+              setReply={setReply}
+              opnDelModel={opnDelModel}
+              setDelModel={setDelModel}
             />
             <CommentDisplay 
               comment={comment}

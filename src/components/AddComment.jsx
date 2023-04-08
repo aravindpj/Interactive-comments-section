@@ -5,7 +5,7 @@ function AddComment({reply , setReply, AddNewComment ,comments, replyingTo="" , 
   const [replying,setRepying]=useState(`@ ${replyingTo}`)
   const [form, setForm]=useState({
      id:Math.floor(Math.random() * 100) + 5,
-     createdAt: "3 sec ago",
+     createdAt: "Just now",
      replyingTo:replying,
      content:"",
      score:0,

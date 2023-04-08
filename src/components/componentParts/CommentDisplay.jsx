@@ -8,10 +8,10 @@ function CommentDisplay({
   editComment,
 }) {
   const [edit, setEdit] = useState(false);
-  const [updatedContent, setUpdateContent] = useState("");
+  const [content, setUpdateContent] = useState(comment?.content);
   function handleEditForm(e) {
     e.preventDefault();
-    editComment(comment.id, updatedContent);
+    editComment(comment.id, content);
     setEdit(false);
   }
   return (
@@ -83,6 +83,7 @@ function CommentDisplay({
           <textarea
             onChange={(e) => setUpdateContent(e.target.value)}
             name=""
+            value={content}
             placeholder="Update reply..."
             id=""
             className=" w-full text-base font-thin px-3 py-2 flex-1 text-gray-700 outline-none resize-none border border-solid border-gray-400 border-b rounded-lg"
