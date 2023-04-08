@@ -9,7 +9,6 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
    const [reply,setReply]=useState(false)
    function addReply(newReply){
       UpdateReplies(comment.id,newReply)
-      // console.log(newReply);
    }
    
    function editReply(id,updatedContent){
@@ -17,8 +16,6 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
    }
    function DeleteComment(id,type="comment"){
        deleteComment(id,type)
-      //  setDelModel(false)
-      
    }
   return (
   <div className="max-w-47em">

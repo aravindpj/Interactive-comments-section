@@ -28,7 +28,7 @@ export default {
          "1.2rem":"1.2rem"
       },
       screens:{
-        sm:"375px",
+        sm:"450px",
       },
       spacing: {
         '93p': '93%',
