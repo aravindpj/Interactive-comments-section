@@ -7,7 +7,7 @@ import AddComment from './AddComment'
 function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) {
    const [opnDelModel,setDelModel]=useState(false)
    const [reply,setReply]=useState(false)
-   
+   const [enableEdit,setEnableEdit]=useState(false)
    function addReply(newReply){
       UpdateReplies(comment.id,newReply)
    }
@@ -28,6 +28,8 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
               setReply={setReply}
               opnDelModel={opnDelModel}
               setDelModel={setDelModel}
+              edit={enableEdit}
+              setEdit={setEnableEdit}
             />
             <CommentDisplay 
               comment={comment}
@@ -35,7 +37,9 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
               setDelModel={setDelModel}
               reply={reply}
               setReply={setReply}
-              editComment={modifyComment}   
+              editComment={modifyComment}
+              enableEdit={enableEdit}
+              setEnableEdit={setEnableEdit}   
             />   
         </div>
         {
@@ -44,16 +48,20 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
         {/* Reply Container */}
         {
           comment?.replies[0] !== undefined &&
-          <ReplyComment
-            replies={comment.replies}
+          comment?.replies.map(reply=>(
+            <ReplyComment
+            comment={reply}
             idofComment={comment.id}
             opnDelModel={opnDelModel}
             setDelModel={setDelModel}
             UpdateReplies={UpdateReplies}
             editComment={editComment}
-           deleteComment={deleteComment}
-           updateScore={updateScore}
+            deleteComment={deleteComment}
+            updateScore={updateScore}
+            enableEdit={enableEdit}
+            setEnableEdit={setEnableEdit}  
           />
+          ))
         }
         {
           opnDelModel && 
