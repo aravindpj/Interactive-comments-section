@@ -48,8 +48,9 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
         {/* Reply Container */}
         {
           comment?.replies[0] !== undefined &&
-          <ReplyComment
-            replies={comment.replies}
+          comment?.replies.map(reply=>(
+            <ReplyComment
+            comment={reply}
             idofComment={comment.id}
             opnDelModel={opnDelModel}
             setDelModel={setDelModel}
@@ -57,7 +58,10 @@ function Comment({comment,UpdateReplies,editComment,deleteComment,updateScore}) 
             editComment={editComment}
             deleteComment={deleteComment}
             updateScore={updateScore}
+            enableEdit={enableEdit}
+            setEnableEdit={setEnableEdit}  
           />
+          ))
         }
         {
           opnDelModel && 
