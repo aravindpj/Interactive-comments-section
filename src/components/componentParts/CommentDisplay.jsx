@@ -6,13 +6,17 @@ function CommentDisplay({
   setReply,
   reply,
   editComment,
+  enableEdit,
+  setEnableEdit
 }) {
   const [edit, setEdit] = useState(false);
   const [content, setUpdateContent] = useState(comment?.content);
+  console.log(enableEdit);
   function handleEditForm(e) {
     e.preventDefault();
     editComment(comment.id, content);
     setEdit(false);
+    enableEdit && setEnableEdit(false)
   }
   return (
     <div className="w-full ">
@@ -68,31 +72,53 @@ function CommentDisplay({
         </div>
       </div>
       {/*comment*/}
-      {!edit ? (
-        <div className="  mt-2">
-          <p className="text-16px break-words pr-6 leading-normal">
-             <span className="pr-1 text-modblue-100 font-medium">{comment?.replyingTo}</span>
-             <span className=" text-gray-500 ">{comment?.content} </span>  
-          </p>
-        </div>
-      ) : (
+      {
+        enableEdit &&
         <form
           onSubmit={handleEditForm}
           className="flex flex-col items-end mt-4 gap-5"
         >
-          <textarea
-            onChange={(e) => setUpdateContent(e.target.value)}
-            name=""
-            value={content}
-            placeholder="Update reply..."
-            id=""
-            className=" w-full text-base font-thin px-3 py-2 flex-1 text-gray-700 outline-none resize-none border border-solid border-gray-400 border-b rounded-lg"
-          ></textarea>
+            <textarea
+              onChange={(e) => setUpdateContent(e.target.value)}
+              name=""
+              value={content}
+              placeholder="Update reply..."
+              id=""
+              className=" w-full text-base font-thin px-3 py-2 flex-1 text-gray-700 outline-none resize-none border border-solid border-gray-400 border-b rounded-lg"
+            ></textarea>
           <button className="uppercase px-7 h-12 bg-modblue-100 font-semibold text-white rounded-lg">
             Update
           </button>
+      </form>
+      }
+      {
+        edit &&
+        <form
+            onSubmit={handleEditForm}
+            className="flex flex-col items-end mt-4 gap-5"
+          >
+              <textarea
+                onChange={(e) => setUpdateContent(e.target.value)}
+                name=""
+                value={content}
+                placeholder="Update reply..."
+                id=""
+                className=" w-full text-base font-thin px-3 py-2 flex-1 text-gray-700 outline-none resize-none border border-solid border-gray-400 border-b rounded-lg"
+              ></textarea>
+            <button className="uppercase px-7 h-12 bg-modblue-100 font-semibold text-white rounded-lg">
+              Update
+            </button>
         </form>
-      )}
+      }
+      {
+        !edit && !enableEdit ? 
+        <div className="  mt-2">
+          <p className="text-16px break-words pr-6 leading-normal">
+            <span className="pr-1 text-modblue-100 font-medium">{comment?.replyingTo}</span>
+            <span className=" text-gray-500 ">{comment?.content} </span>  
+          </p>
+        </div> : ""
+      }
     </div>
   );
 }

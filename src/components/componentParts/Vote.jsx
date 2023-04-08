@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Vote({comment,updateScore,type,setReply,reply,opnDelModel,setDelModel}) {
+function Vote({comment,updateScore,type,setReply,reply,opnDelModel,setDelModel,edit,setEdit}) {
     const [vote,setVote]=useState(comment?.voted ?? false)
     const [score,setScore]=useState(comment?.score)
    function upVote(){
@@ -46,7 +46,7 @@ function Vote({comment,updateScore,type,setReply,reply,opnDelModel,setDelModel})
                      <span className='text-red-400 font-normal text-base'>Delete</span>
                 </button>
 
-                <button className='flex items-center gap-1.5 '>
+                <button onClick={()=>setEdit(!edit)} className='flex items-center gap-1.5 '>
                     <img src="./images/icon-edit.svg" alt="" />
                      <span className='text-modblue-100 font-normal text-base'>Edit</span>
                 </button> 

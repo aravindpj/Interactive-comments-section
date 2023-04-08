@@ -1,7 +1,6 @@
 import {  useEffect, useState } from 'react'
 import AddComment from './components/AddComment'
 import Comment  from './components/Comment'
-import { comment } from 'postcss'
 
 function App() {
   const [comments ,updateComments]=useState([])
