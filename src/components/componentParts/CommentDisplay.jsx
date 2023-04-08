@@ -72,8 +72,7 @@ function CommentDisplay({
         <div className="  mt-2">
           <p className="text-16px break-words pr-6 leading-normal">
              <span className="pr-1 text-modblue-100 font-medium">{comment?.replyingTo}</span>
-             <span className=" text-gray-500 ">{comment?.content} </span>
-             
+             <span className=" text-gray-500 ">{comment?.content} </span>  
           </p>
         </div>
       ) : (

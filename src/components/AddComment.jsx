@@ -33,7 +33,8 @@ function AddComment({reply , setReply, AddNewComment ,comments, replyingTo="" , 
      }
   },[isSmall])
   function handleTextareaChange(event) {
-    setForm({ ...form, content: event.target.value });
+    const cleanContent = event.target.value.replace(/[@\/?]/g, '');
+    setForm({ ...form, content: cleanContent });
   }
   return (
     <form id='form' onSubmit={handleFormSubmit} className='flex-col mt-2  p-6 bg-white w-full flex max-w-47em gap-5 rounded-lg sm:flex-row'>
