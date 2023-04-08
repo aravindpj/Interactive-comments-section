@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 function AddComment({reply , setReply, AddNewComment ,comments, replyingTo="" , isSmall}) {
-  
+   
+  const [replying,setRepying]=useState(`@ ${replyingTo}`)
   const [form, setForm]=useState({
      id:Math.floor(Math.random() * 100) + 5,
      createdAt: "3 sec ago",
-     replyingTo,
+     replyingTo:replying,
      content:"",
      score:0,
      user:{
@@ -20,7 +21,9 @@ function AddComment({reply , setReply, AddNewComment ,comments, replyingTo="" , 
   
   function handleFormSubmit(e){
      e.preventDefault()
+     console.log(form);
      AddNewComment(form)
+     setRepying("")
     reply !== undefined && setReply(false)
   }
   useEffect(()=>{
@@ -29,12 +32,18 @@ function AddComment({reply , setReply, AddNewComment ,comments, replyingTo="" , 
        document.querySelector("#form").classList.remove("w-full")
      }
   },[isSmall])
+  function handleTextareaChange(event) {
+    setForm({ ...form, content: event.target.value });
+  }
   return (
     <form id='form' onSubmit={handleFormSubmit} className='flex-col mt-2  p-6 bg-white w-full flex max-w-47em gap-5 rounded-lg sm:flex-row'>
 
         <img className='hidden sm:block w-9 h-9' src="./images/avatars/image-juliusomo.png" alt="" />
 
-        <textarea onChange={(e)=>setForm({...form,content:e.target.value})}  name="" placeholder='Add a comment..' id="" className="h-24  caret-neutral-600 text-base font-thin px-3 py-2 flex-1 text-gray-700 outline-none resize-none border border-solid border-gray-400 border-b rounded-lg"></textarea>
+        <textarea 
+          
+          onChange={handleTextareaChange}
+          name="content"placeholder={replyingTo ? `${replying}` : "Add Comment..."} id="" className="h-24  caret-neutral-600 text-base font-thin px-3 py-2 flex-1 text-gray-700 outline-none resize-none border border-solid border-gray-400 border-b rounded-lg"></textarea>
         
         <div className='flex justify-between items-center sm:flex-none sm:items-start'>
             <img className='w-9 h-9 sm:hidden' src="./images/avatars/image-juliusomo.png" alt="" />
