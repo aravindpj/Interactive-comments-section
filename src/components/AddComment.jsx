@@ -25,6 +25,8 @@ function AddComment({reply , setReply, AddNewComment ,comments, replyingTo="" , 
      AddNewComment(form)
      setRepying("")
     reply !== undefined && setReply(false)
+    document.querySelector("#form").reset()
+    
   }
   useEffect(()=>{
      if(isSmall){
