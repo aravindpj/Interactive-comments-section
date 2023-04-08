@@ -18,7 +18,6 @@ function ReplyComment({ replies , idofComment,UpdateReplies ,deleteComment,updat
   }
   return (
     <div className=" sm:w-93p border-l-2 border-gray-300 float-right mt-5">
-      {/*if replay is true i need add gap b/w comment and reply remove mt-5 from here*/}
       {replies?.map((comment, i) => (
         <div className=" flex flex-col items-end mb-2">
           <div className="sm:flex-row items-start md:max-w-47em w-94p flex  gap-5 p-7 rounded-lg bg-white flex-col-reverse ">
